@@ -47,7 +47,7 @@ public class AuthenticationTest {
   public boolean isDataInitialized = false;
 
   @BeforeEach
-  void setUp() throws Exception {
+  void setUp() {
     if(!isDataInitialized) {
       isDataInitialized = true;
       TestUtils.setupTestUsers(userWithRolesRepository,roleRepository,pwEncoder);

@@ -52,10 +52,10 @@ public class AuthorizationTest {
   public static String user_noRolesJwtToken;
 
   void LoginAndGetTokens() throws Exception {
-    user_adminJwtToken = loginAndGetToken("u1","secret");
-    userJwtToken = loginAndGetToken("u2","secret");
-    adminJwtToken = loginAndGetToken("u3","secret");
-    user_noRolesJwtToken = loginAndGetToken("u4","secret");
+    user_adminJwtToken = loginAndGetToken("u1");
+    userJwtToken = loginAndGetToken("u2");
+    adminJwtToken = loginAndGetToken("u3");
+    user_noRolesJwtToken = loginAndGetToken("u4");
   }
 
   @BeforeEach
@@ -66,8 +66,8 @@ public class AuthorizationTest {
     }
   }
 
-  String loginAndGetToken(String user,String pw) throws Exception {
-    LoginRequest loginRequest = new LoginRequest(user,pw);
+  String loginAndGetToken(String user) throws Exception {
+    LoginRequest loginRequest = new LoginRequest(user, "secret");
     MvcResult response = mockMvc.perform(post("/api/auth/login")
                     .contentType("application/json")
                     .content(objectMapper.writeValueAsString(loginRequest)))

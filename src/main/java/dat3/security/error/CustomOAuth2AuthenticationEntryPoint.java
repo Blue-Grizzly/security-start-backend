@@ -43,9 +43,8 @@ public class CustomOAuth2AuthenticationEntryPoint implements AuthenticationEntry
       if (StringUtils.hasText(error.getUri())) {
         parameters.put("error_uri", error.getUri());
       }
-      if (error instanceof BearerTokenError) {
-        BearerTokenError bearerTokenError = (BearerTokenError) error;
-        if (StringUtils.hasText(bearerTokenError.getScope())) {
+      if (error instanceof BearerTokenError bearerTokenError) {
+          if (StringUtils.hasText(bearerTokenError.getScope())) {
           parameters.put("scope", bearerTokenError.getScope());
         }
         status = ((BearerTokenError) error).getHttpStatus();

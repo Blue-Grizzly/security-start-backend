@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/user-with-role")
 public class UserWithRoleController {
 
-  UserWithRolesService userWithRolesService;
+  final UserWithRolesService userWithRolesService;
 
   public UserWithRoleController(UserWithRolesService userWithRolesService) {
     this.userWithRolesService = userWithRolesService;

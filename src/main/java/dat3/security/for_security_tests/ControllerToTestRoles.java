@@ -31,7 +31,7 @@ class TestResponse {
 @Profile("test")
 public class ControllerToTestRoles {
 
-    UserWithRolesService userWithRolesService;
+    final UserWithRolesService userWithRolesService;
 
     public ControllerToTestRoles(UserWithRolesService userWithRolesService) {
         this.userWithRolesService = userWithRolesService;

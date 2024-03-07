@@ -63,8 +63,8 @@ class UserWithRoleControllerTest {
       //userWithRolesService = new UserWithRolesService(userWithRolesRepository, roleRepository);
       userWithRolesRepository.deleteAll();
       TestUtils.setupTestUsers(userWithRolesRepository,roleRepository,passwordEncoder);
-      userToken = loginAndGetToken("u2", "secret");
-      adminToken = loginAndGetToken("u3", "secret");
+      userToken = loginAndGetToken("u2");
+      adminToken = loginAndGetToken("u3");
       dataInitialized = true;
     }
     userWithRolesService.setDefaultRoleName("USER"); //can also be done in the TEST application.properties
@@ -75,8 +75,8 @@ class UserWithRoleControllerTest {
     userWithRolesService.setDefaultRoleName("USER");
   }
 
-  String loginAndGetToken(String user, String pw) throws Exception {
-    LoginRequest loginRequest = new LoginRequest(user, pw);
+  String loginAndGetToken(String user) throws Exception {
+    LoginRequest loginRequest = new LoginRequest(user, "secret");
     MvcResult response = mockMvc.perform(post("/api/auth/login")
                     .contentType("application/json")
                     .content(objectMapper.writeValueAsString(loginRequest)))

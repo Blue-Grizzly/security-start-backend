@@ -24,7 +24,7 @@ public class UserWithRolesService {
   private Role roleToAssign;
 
 
-  PasswordEncoder passwordEncoder;
+  final PasswordEncoder passwordEncoder;
 
 
   @PostConstruct

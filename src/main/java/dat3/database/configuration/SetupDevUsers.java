@@ -1,8 +1,10 @@
-package dat3.rename_me.configuration;
+package dat3.database.configuration;
 
 import dat3.security.entity.Role;
+import dat3.security.entity.SpecialUser;
 import dat3.security.entity.UserWithRoles;
 import dat3.security.repository.RoleRepository;
+import dat3.security.repository.SpecialUserRepository;
 import dat3.security.repository.UserWithRolesRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -14,17 +16,19 @@ import java.util.NoSuchElementException;
 @Component
 public class SetupDevUsers implements ApplicationRunner {
 
-    UserWithRolesRepository userWithRolesRepository;
-    RoleRepository roleRepository;
-    PasswordEncoder pwEncoder;
-    String passwordUsedByAll;
+    final UserWithRolesRepository userWithRolesRepository;
+    final RoleRepository roleRepository;
+    final PasswordEncoder pwEncoder;
+    final String passwordUsedByAll;
+    final SpecialUserRepository specialUserRepository;
 
-    public SetupDevUsers(UserWithRolesRepository userWithRolesRepository,RoleRepository roleRepository,PasswordEncoder passwordEncoder) {
+    public SetupDevUsers(UserWithRolesRepository userWithRolesRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, SpecialUserRepository specialUserRepository) {
         this.userWithRolesRepository = userWithRolesRepository;
         this.roleRepository = roleRepository;
         this.pwEncoder = passwordEncoder;
 
         passwordUsedByAll = "test12";
+        this.specialUserRepository = specialUserRepository;
     }
 
     public void run(ApplicationArguments args) {
@@ -66,5 +70,10 @@ public class SetupDevUsers implements ApplicationRunner {
         userWithRolesRepository.save(user2);
         userWithRolesRepository.save(user3);
         userWithRolesRepository.save(user4);
+        SpecialUser specialUser =
+                new SpecialUser("specialUser",pwEncoder.encode(passwordUsedByAll),"s@a.dk","Anders","Hansen","Lyngby vej 23","2800","Lyngby");
+        specialUser.addRole(roleUser);
+        specialUserRepository.save(specialUser);
+
     }
 }

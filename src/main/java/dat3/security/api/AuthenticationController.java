@@ -40,7 +40,7 @@ public class AuthenticationController {
   @Value("${app.token-expiration}")
   private long tokenExpiration;
 
-  private AuthenticationManager authenticationManager;
+  private final AuthenticationManager authenticationManager;
 
   JwtEncoder encoder;
 
@@ -60,7 +60,6 @@ public class AuthenticationController {
 
       UserWithRoles user = (UserWithRoles) authentication.getPrincipal();
       Instant now = Instant.now();
-      long expiry = tokenExpiration;
       String scope = authentication.getAuthorities().stream()
               .map(GrantedAuthority::getAuthority)
               .collect(joining(" "));

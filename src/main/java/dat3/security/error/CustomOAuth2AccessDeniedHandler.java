@@ -39,7 +39,7 @@ public class CustomOAuth2AccessDeniedHandler implements AccessDeniedHandler {
     Map<String, String> errorResponse = new HashMap<>();
     DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ");
     errorResponse.put("timestamp", df.format(new Date()));
-    errorResponse.put("status", ""+HttpStatus.FORBIDDEN.toString());
+    errorResponse.put("status", ""+ HttpStatus.FORBIDDEN);
     errorResponse.put("error", e.getLocalizedMessage());
     errorResponse.put("message", errorMessage);
     errorResponse.put("path", request.getRequestURI());

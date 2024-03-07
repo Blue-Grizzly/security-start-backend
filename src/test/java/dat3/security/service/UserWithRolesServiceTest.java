@@ -98,8 +98,7 @@ class UserWithRolesServiceTest {
     assertEquals("u5", newUser.getUserName());
     assertEquals("xx@x.dk", newUser.getEmail());
     //Verify that the password is hashed
-    UserWithRoles userFromDB = userWithRolesRepository.findById("u5").get();
-    assertEquals(60,userWithRolesRepository.findById("u5").get().getPassword().length());
+      assertEquals(60,userWithRolesRepository.findById("u5").get().getPassword().length());
   }
   @Test
   void addUserWithRolesWithRole() {
