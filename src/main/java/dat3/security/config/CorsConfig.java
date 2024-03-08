@@ -12,9 +12,10 @@ public class CorsConfig {
 
     //When you know the domain name for your client, add it below before deployment
     private static final String[] ALLOWED_ORIGINS = new String[] {
-            "*",
+            //"*",
             "http://localhost:5173",
-            "https://blue-grizzly.github.io/*"
+            "http://localhost:4173",
+            "https://blue-grizzly.github.io/react-router-ex/"
     };
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
