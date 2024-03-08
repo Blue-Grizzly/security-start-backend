@@ -19,6 +19,7 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     private String name;
+    private String owner;
 
     @Column(columnDefinition="TEXT")
     private String instructions;
@@ -41,4 +42,5 @@ public class Recipe {
     public void addCategory(Category category) {
         category.addRecipe(this);
     }
+
 }

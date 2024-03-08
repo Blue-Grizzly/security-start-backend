@@ -34,13 +34,14 @@ public class RecipeService {
         return new RecipeDto(recipe,false);
     }
 
-    public RecipeDto addRecipe(RecipeDto request) {
+    public RecipeDto addRecipe(RecipeDto request, String username) {
         if (request.getId() != null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "You cannot provide the id for a new recipe");
         }
         Category category = categoryRepository.findByName(request.getCategory()).
                 orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Only existing categories are allowed"));
         Recipe newRecipe = new Recipe();
+        newRecipe.setOwner(username);
         updateRecipe(newRecipe, request, category);
         recipeRepository.save(newRecipe);
         return new RecipeDto(newRecipe,false);
