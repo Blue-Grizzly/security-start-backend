@@ -15,7 +15,7 @@ public class CorsConfig {
             //"*",
             "http://localhost:5173",
             "http://localhost:4173",
-            "https://blue-grizzly.github.io/react-router-ex/"
+            "https://blue-grizzly.github.io/*"
     };
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
